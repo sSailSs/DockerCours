@@ -1,0 +1,241 @@
+services:
+  traefik:
+    image: traefik:v3.1
+    container_name: traefik
+    command:
+      - --providers.file.filename=/etc/traefik/dynamic.yml
+      - --entrypoints.web.address=:80
+    ports:
+      - "80:80"
+    volumes:
+      - ./traefik/dynamic.yml:/etc/traefik/dynamic.yml:ro
+    networks:
+      - traefik
+
+  site1:
+    build:
+      context: ./site1
+      dockerfile: Dockerfile
+    depends_on:
+      - traefik
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.site1.rule=Host(`site1.localhost`)
+      - traefik.http.routers.site1.entrypoints=web
+      - traefik.http.services.site1.loadbalancer.server.port=3000
+    networks:
+      - traefik
+
+  homeassistant:
+    image: ghcr.io/home-assistant/home-assistant:stable
+    container_name: homeassistant
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/Paris
+    volumes:
+      - ./ha/config:/config
+    depends_on:
+      - traefik
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.ha.rule=Host(`ha.localhost`)
+      - traefik.http.routers.ha.entrypoints=web
+      - traefik.http.services.ha.loadbalancer.server.port=8123
+    networks:
+      - traefik
+
+  site3:
+    build:
+      context: ./site3
+      dockerfile: Dockerfile
+    container_name: site3
+    depends_on:
+      - traefik
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.site3.rule=Host(`site3.localhost`)
+      - traefik.http.routers.site3.entrypoints=web
+      - traefik.http.services.site3.loadbalancer.server.port=80
+    networks:
+      - traefik
+
+  site4:
+    build:
+      context: ./site4
+      dockerfile: Dockerfile
+    container_name: site4
+    depends_on:
+      - traefik
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.site4.rule=Host(`site4.localhost`)
+      - traefik.http.routers.site4.entrypoints=web
+      - traefik.http.services.site4.loadbalancer.server.port=80
+    networks:
+      - traefik
+
+  site5:
+    build:
+      context: ./site5
+      dockerfile: Dockerfile
+    container_name: site5
+    depends_on:
+      - traefik
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.site5.rule=Host(`site5.localhost`)
+      - traefik.http.routers.site5.entrypoints=web
+      - traefik.http.services.site5.loadbalancer.server.port=80
+    networks:
+      - traefik
+
+  # === BONUS: Stack Média Netflix Maison ===
+  
+  jellyfin:
+    image: jellyfin/jellyfin:latest
+    container_name: jellyfin
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Paris
+    volumes:
+      - ./media/configs/jellyfin:/config
+      - ./media/movies:/data/movies
+      - ./media/shows:/data/tvshows
+      - ./media/music:/data/music
+    depends_on:
+      - traefik
+    networks:
+      - traefik
+      - media
+
+  radarr:
+    image: linuxserver/radarr:latest
+    container_name: radarr
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Paris
+    volumes:
+      - ./media/configs/radarr:/config
+      - ./media/movies:/movies
+      - ./media/downloads:/downloads
+    depends_on:
+      - traefik
+    networks:
+      - traefik
+      - media
+
+  sonarr:
+    image: linuxserver/sonarr:latest
+    container_name: sonarr
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Paris
+    volumes:
+      - ./media/configs/sonarr:/config
+      - ./media/shows:/tv
+      - ./media/downloads:/downloads
+    depends_on:
+      - traefik
+    networks:
+      - traefik
+      - media
+
+  lidarr:
+    image: linuxserver/lidarr:latest
+    container_name: lidarr
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Paris
+    volumes:
+      - ./media/configs/lidarr:/config
+      - ./media/music:/music
+      - ./media/downloads:/downloads
+    depends_on:
+      - traefik
+    networks:
+      - traefik
+      - media
+
+  # readarr:
+  #   image: lscr.io/linuxserver/readarr:develop
+  #   container_name: readarr
+  #   restart: unless-stopped
+  #   environment:
+  #     - PUID=1000
+  #     - PGID=1000
+  #     - TZ=Europe/Paris
+  #   volumes:
+  #     - ./media/configs/readarr:/config
+  #     - ./media/books:/books
+  #     - ./media/downloads:/downloads
+  #   depends_on:
+  #     - traefik
+  #   networks:
+  #     - traefik
+  #     - media
+
+  bazarr:
+    image: linuxserver/bazarr:latest
+    container_name: bazarr
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Paris
+    volumes:
+      - ./media/configs/bazarr:/config
+      - ./media/movies:/movies
+      - ./media/shows:/tv
+    depends_on:
+      - traefik
+    networks:
+      - traefik
+      - media
+
+  prowlarr:
+    image: linuxserver/prowlarr:latest
+    container_name: prowlarr
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Paris
+    volumes:
+      - ./media/configs/prowlarr:/config
+    depends_on:
+      - traefik
+    networks:
+      - traefik
+      - media
+
+  qbittorrent:
+    image: linuxserver/qbittorrent:latest
+    container_name: qbittorrent
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Paris
+      - WEBUI_PORT=8080
+    volumes:
+      - ./media/configs/qbittorrent:/config
+      - ./media/downloads:/downloads
+    depends_on:
+      - traefik
+    networks:
+      - traefik
+      - media
+
+networks:
+  traefik:
+    driver: bridge
+  media:
+    driver: bridge

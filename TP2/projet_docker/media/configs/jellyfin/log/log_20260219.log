@@ -1,0 +1,8 @@
+[2026-02-19 14:09:20.507 +01:00] [INF] [226] Emby.Server.Implementations.Library.LibraryManager: Validating media library
+[2026-02-19 14:09:20.887 +01:00] [INF] [227] Emby.Server.Implementations.ScheduledTasks.TaskManager: "Media Segment Scan" Completed after 0 minute(s) and 0 seconds
+[2026-02-19 14:09:21.487 +01:00] [WRN] [226] MediaBrowser.Controller.Entities.BaseItem: Library folder "/config/data/playlists" is inaccessible or empty, skipping
+[2026-02-19 14:09:21.550 +01:00] [WRN] [226] MediaBrowser.Controller.Entities.BaseItem: Library folder "/config/data/playlists" is inaccessible or empty, skipping
+[2026-02-19 14:09:22.076 +01:00] [INF] [226] Emby.Server.Implementations.ScheduledTasks.TaskManager: "Scan Media Library" Completed after 0 minute(s) and 1 seconds
+[2026-02-19 14:10:21.560 +01:00] [INF] [222] Emby.Server.Implementations.ScheduledTasks.Tasks.OptimizeDatabaseTask: Optimizing and vacuuming jellyfin.db...
+[2026-02-19 14:10:21.678 +01:00] [INF] [222] Jellyfin.Database.Providers.Sqlite.SqliteDatabaseProvider: jellyfin.db optimized successfully!
+[2026-02-19 14:10:21.678 +01:00] [INF] [222] Emby.Server.Implementations.ScheduledTasks.TaskManager: "Optimize database" Completed after 0 minute(s) and 0 seconds

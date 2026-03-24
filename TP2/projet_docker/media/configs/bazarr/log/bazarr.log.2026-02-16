@@ -1,0 +1,5 @@
+2026-02-16 13:45:45|INFO    |root                            |Scheduler will use this timezone: Europe/Paris|
+2026-02-16 13:45:52|INFO    |root                            |Interactive jobs queue started and waiting for tasks|
+2026-02-16 13:45:52|INFO    |waitress                        |BAZARR is started and waiting for requests on: http://***.***.***.***:6767|
+2026-02-16 13:45:52|INFO    |waitress                        |BAZARR is started and waiting for requests on: http://[::]:6767|
+2026-02-16 16:15:05|WARNING |apscheduler.executors.default   |Run time of job "Update Release Info (trigger: interval[3:00:00], next run at: 2026-02-16 19:09:07 CET)" was missed by 0:05:57.831553|

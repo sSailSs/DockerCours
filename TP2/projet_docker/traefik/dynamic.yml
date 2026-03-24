@@ -1,0 +1,145 @@
+http:
+  routers:
+    site1:
+      rule: "Host(`site1.localhost`)"
+      service: site1
+      entryPoints:
+        - web
+
+    homeassistant:
+      rule: "Host(`ha.localhost`)"
+      service: homeassistant
+      entryPoints:
+        - web
+
+    site3:
+      rule: "Host(`site3.localhost`)"
+      service: site3
+      entryPoints:
+        - web
+
+    site4:
+      rule: "Host(`site4.localhost`)"
+      service: site4
+      entryPoints:
+        - web
+
+    site5:
+      rule: "Host(`site5.localhost`)"
+      service: site5
+      entryPoints:
+        - web
+
+    jellyfin:
+      rule: "Host(`jellyfin.localhost`)"
+      service: jellyfin
+      entryPoints:
+        - web
+
+    radarr:
+      rule: "Host(`radarr.localhost`)"
+      service: radarr
+      entryPoints:
+        - web
+
+    sonarr:
+      rule: "Host(`sonarr.localhost`)"
+      service: sonarr
+      entryPoints:
+        - web
+
+    lidarr:
+      rule: "Host(`lidarr.localhost`)"
+      service: lidarr
+      entryPoints:
+        - web
+
+    # readarr:
+    #   rule: "Host(`readarr.localhost`)"
+    #   service: readarr
+    #   entryPoints:
+    #     - web
+
+    bazarr:
+      rule: "Host(`bazarr.localhost`)"
+      service: bazarr
+      entryPoints:
+        - web
+
+    prowlarr:
+      rule: "Host(`prowlarr.localhost`)"
+      service: prowlarr
+      entryPoints:
+        - web
+
+    qbittorrent:
+      rule: "Host(`qbit.localhost`)"
+      service: qbittorrent
+      entryPoints:
+        - web
+
+  services:
+    site1:
+      loadBalancer:
+        servers:
+          - url: "http://projet_docker-site1-1:3000"
+
+    homeassistant:
+      loadBalancer:
+        servers:
+          - url: "http://homeassistant:8123"
+
+    site3:
+      loadBalancer:
+        servers:
+          - url: "http://site3:80"
+
+    site5:
+      loadBalancer:
+        servers:
+          - url: "http://site5:80"
+
+    site4:
+      loadBalancer:
+        servers:
+          - url: "http://site4:80"
+
+    jellyfin:
+      loadBalancer:
+        servers:
+          - url: "http://jellyfin:8096"
+
+    radarr:
+      loadBalancer:
+        servers:
+          - url: "http://radarr:7878"
+
+    sonarr:
+      loadBalancer:
+        servers:
+          - url: "http://sonarr:8989"
+
+    lidarr:
+      loadBalancer:
+        servers:
+          - url: "http://lidarr:8686"
+
+    # readarr:
+    #   loadBalancer:
+    #     servers:
+    #       - url: "http://readarr:8787"
+
+    bazarr:
+      loadBalancer:
+        servers:
+          - url: "http://bazarr:6767"
+
+    prowlarr:
+      loadBalancer:
+        servers:
+          - url: "http://prowlarr:9696"
+
+    qbittorrent:
+      loadBalancer:
+        servers:
+          - url: "http://qbittorrent:8080"

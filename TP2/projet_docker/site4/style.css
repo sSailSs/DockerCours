@@ -1,0 +1,115 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #e9f1ff;
+  background: radial-gradient(circle at top, #0b1535 0%, #060b1c 40%, #02040a 100%);
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.hero {
+  position: relative;
+  padding: 4.5rem 0 3.5rem;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 0.6rem;
+}
+
+.hero p {
+  opacity: 0.85;
+}
+
+.stars {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.7), transparent 60%),
+    radial-gradient(1px 1px at 80px 120px, rgba(255,255,255,0.6), transparent 60%),
+    radial-gradient(2px 2px at 200px 80px, rgba(255,255,255,0.5), transparent 60%),
+    radial-gradient(1px 1px at 300px 200px, rgba(255,255,255,0.6), transparent 60%),
+    radial-gradient(2px 2px at 500px 50px, rgba(255,255,255,0.4), transparent 60%);
+  opacity: 0.7;
+}
+
+.badges {
+  margin-top: 1.2rem;
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.badges span {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+}
+
+.intro {
+  margin: 2.2rem 0;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1.5rem;
+  border-radius: 16px;
+}
+
+.planets {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.planet {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding: 1.1rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.orb {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #ffffff40, var(--c));
+  box-shadow: 0 0 20px #ffffff12;
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.fact {
+  padding: 1.2rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+footer {
+  text-align: center;
+  padding: 1.5rem 0 2.5rem;
+  color: #b7c5e6;
+}

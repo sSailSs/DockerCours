@@ -1,0 +1,5 @@
+2026-02-18 09:57:14|WARNING |apscheduler.executors.default   |Run time of job "Update Release Info (trigger: interval[3:00:00], next run at: 2026-02-18 12:50:05 CET)" was missed by 0:07:09.636744|
+2026-02-18 09:57:14|WARNING |apscheduler.executors.default   |Run time of job "Check Health (trigger: interval[6:00:00], next run at: 2026-02-18 15:32:04 CET)" was missed by 0:25:10.666506|
+2026-02-18 09:57:14|WARNING |apscheduler.executors.default   |Run time of job "Update Announcements File (trigger: interval[6:00:00], next run at: 2026-02-18 15:56:17 CET)" was missed by 0:00:57.675488|
+2026-02-18 09:57:14|WARNING |apscheduler.executors.default   |Run time of job "Cache Maintenance (trigger: interval[1 day, 0:00:00], next run at: 2026-02-19 09:11:57 CET)" was missed by 0:45:17.679877|
+2026-02-18 13:29:47|WARNING |apscheduler.executors.default   |Run time of job "Update Release Info (trigger: interval[3:00:00], next run at: 2026-02-18 15:50:05 CET)" was missed by 0:39:41.844335|
