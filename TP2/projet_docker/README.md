@@ -1,4 +1,4 @@
-# Projet Docker — Architecture multi-services avec Traefik
+# Projet Docker - Architecture multi-services avec Traefik
 
 ## Prérequis
 - Docker / Docker Desktop installé
@@ -23,7 +23,7 @@ docker compose down
 - **Site3** : AutoPassion (site HTML/CSS sur les voitures), accessible sur http://site3.localhost
 - **Site4** : Cosmos (site sur les planètes), accessible sur http://site4.localhost
 
-### 🎬 BONUS : Stack Média "Netflix Maison" (+5 points)
+### 🎬 BONUS : Stack Média "Netflix Maison"
 
 Stack complète de gestion et diffusion multimédia :
 
